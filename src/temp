@@ -1,0 +1,18 @@
+<Navbar collapseOnSelect expand="lg" className ="navup" variant="dark">
+          <Navbar.Brand href="#home">CAKESHOP</Navbar.Brand>
+          </Navbar>
+
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+
+           <>
+        <Navbar collapseOnSelect  className = "navup" variant = "light">
+          <Navbar.Brand href='#'><h1 className="h1"> CAKESHOP</h1></Navbar.Brand>
+          
+          <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="mr-auto" >
+                <Nav.Link href="#features"><h3 className="white">PRODUCTS</h3></Nav.Link>
+                <Nav.Link href="#pricing"><h3 className="white">USERS</h3></Nav.Link>
+          </Nav>
+          </Navbar.Collapse>
+        </Navbar>
+        </>
