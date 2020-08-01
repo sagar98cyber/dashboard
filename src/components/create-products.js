@@ -1,12 +1,14 @@
 import React,{ Component} from 'react';
-import Dropdown from 'react-dropdown';
-import { Form } from 'react-bootstrap';
 import 'react-dropdown/style.css';
-const options = [
+/*const options = [
     'eggless', 'egg,eggless', 'egg'
   ];
+  const category = [
+    'cake', 'pastry', 'custom cake'
+  ];
   const defaultOption = options[0];
-
+  const categoryOption = category[0];
+*/
 export default class CreateProduct extends Component{
     
     constructor(props){
@@ -92,6 +94,12 @@ export default class CreateProduct extends Component{
         });
     }
     onSubmit(e){
+
+        console.log(
+            `${this.state.pname} ${this.state.amount} ${this.state.category}`
+        );
+
+
         e.preventDefault();
         this.setState({
             pname:'',
@@ -128,12 +136,94 @@ export default class CreateProduct extends Component{
                     <input type="number" className="form-control" value={this.state.amount} onChange={this.onchangeproductamount}
                     />
                    </div>
+                  
                    <div className="form-group">
                    <label>CATEGORY</label>
-                   <Dropdown options={options} onChange={this._onSelect} value={defaultOption} placeholder="Select an option" />
+                   <div className="form-group">
+                       <div className="form-check form-check-inline">                        
+
+                            <input 
+                            className="form-check form-check-inline"
+                            type="radio"
+                            name="eggless"
+                            id="egglesss"
+                            value="eggless"
+                            checked={this.state.category === 'eggless'}
+                                onChange={this.onchangeproductcategory}  
+                            />
+                            <label>EGGLESS</label>
+                    </div>
+                    <div className="form-check form-check-inline">                        
+
+                            <input 
+                            className="form-check form-check-inline"
+                            type="radio"
+                            name="egge"
+                            id="egge"
+                            value="egge"
+                            checked={this.state.category === 'egge'}
+                                onChange={this.onchangeproductcategory}  
+                            />
+                            <label>EGG/LESS</label>
+                    </div>
+                    <div className="form-check form-check-inline">                        
+
+                            <input 
+                            className="form-check form-check-inline"
+                            type="radio"
+                            name="egg"
+                            id="egg"
+                            value="egg"
+                            checked={this.state.category === 'egg'}
+                                onChange={this.onchangeproductcategory}  
+                            />
+                            <label>EGGLESS</label>
+                    </div>
+                   </div>
                     
                    </div>
-
+                   <div className="form-group">
+                   <label>PRODUCT DETAILS</label>
+                   <div>
+                    <input type="text" className="form-control" value={this.state.prodDetails} onChange={this.onchangeproductprodDetails}
+                    />
+                    </div>
+                   </div>
+                   <div className="form-group">
+                   <label>PRODUCT RANK</label>
+                    <input type="number" className="form-control" value={this.state.prdRank} onChange={this.onchangeproductprdRank}
+                    />
+                   </div>
+                   <div className="form-group">
+                   <label>PROFIT RATIO</label>
+                    <input type="number" className="form-control" value={this.state.profitRatio} onChange={this.onchangeproductprofitRatio}
+                    />
+                   </div>
+                   <div className="form-group">
+                   <label>DELIVERY CHANGES</label>
+                    <input type="number" className="form-control" value={this.state.deliveryCharges} onChange={this.onchangeproductdeliveryCharges}
+                    />
+                   </div>
+                   <div className="form-group">
+                   <label>TAX</label>
+                    <input type="number" className="form-control" value={this.state.tax} onChange={this.onchangeproducttax}
+                    />
+                   </div>
+                   <div className="form-group">
+                   <label>filename</label>
+                    <input type="text" className="form-control" value={this.state.filename} onChange={this.onchangeproductfilename}
+                    />
+                   </div>
+                   <div className="form-group">
+                   <label>FILELOC</label>
+                    <input type="text" className="form-control" value={this.state.fileloc} onChange={this.onchangeproductfileloc}
+                    />
+                   </div>
+                   <div className="form-group">
+                   
+                    <input type="submit" className="btn btn-primary" value="create Product" onChange={this.onchangeproductfileloc}
+                    />
+                   </div>
                 </form>
             </div>
         );
