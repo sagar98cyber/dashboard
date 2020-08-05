@@ -1,5 +1,6 @@
 import React,{ Component} from 'react';
 import 'react-dropdown/style.css';
+import Axios from 'axios';
 /*const options = [
     'eggless', 'egg,eggless', 'egg'
   ];
@@ -32,8 +33,8 @@ export default class CreateProduct extends Component{
         this.state={
             pname:'',
             amount:'',
-           /* weight:'',
-            flavor:'',*/
+            weight:['250 Grams','500 Grams'],
+           /* flavor:'',*/
             eggless:'',
             category:'',
             prodDetails:'',
@@ -75,6 +76,7 @@ export default class CreateProduct extends Component{
     } onchangeproductprofitRatio(e){
         this.setState({
             profitRatio: e.target.value
+            
         });
     } onchangeproductprdRank(e){
         this.setState({
@@ -96,15 +98,33 @@ export default class CreateProduct extends Component{
     onSubmit(e){
 
         console.log(
-            `${this.state.pname} ${this.state.amount} ${this.state.category}`
+            `${this.state.pname} ${this.state.amount} ${this.state.eggless}`
         );
-
+        
+        const newProd = {
+            pname:this.state.pname,
+            amount:this.state.amount,
+             weight:this.state.weight,
+            /* flavor:'',*/
+             eggless:this.state.eggless,
+             category:this.state.category,
+             prodDetails:this.state.prodDetails,
+             prdRank:this.state.prdRank,
+             profitRatio:this.state.profitRatio,
+             deliveryCharges:this.state.deliveryCharges,
+             tax:this.state.tax,
+             filename:this.state.filename,
+             fileloc:this.state.fileloc,
+        }
+        
+        Axios.post('http://localhost:3000/products/addproduct',newProd)
+        .then(res=>console.log(res.data));
 
         e.preventDefault();
         this.setState({
             pname:'',
             amount:'',
-           /* weight:'',
+           /* weight:,
             flavor:'',*/
             eggless:'',
             category:'',
@@ -136,9 +156,10 @@ export default class CreateProduct extends Component{
                     <input type="number" className="form-control" value={this.state.amount} onChange={this.onchangeproductamount}
                     />
                    </div>
-                  
+                   
+
                    <div className="form-group">
-                   <label>CATEGORY</label>
+                   <label>EGG/LESS</label>
                    <div className="form-group">
                        <div className="form-check form-check-inline">                        
 
@@ -148,8 +169,8 @@ export default class CreateProduct extends Component{
                             name="eggless"
                             id="egglesss"
                             value="eggless"
-                            checked={this.state.category === 'eggless'}
-                                onChange={this.onchangeproductcategory}  
+                            checked={this.state.eggless === 'eggless'}
+                                onChange={this.onchangeproducteggless}  
                             />
                             <label>EGGLESS</label>
                     </div>
@@ -161,8 +182,8 @@ export default class CreateProduct extends Component{
                             name="egge"
                             id="egge"
                             value="egge"
-                            checked={this.state.category === 'egge'}
-                                onChange={this.onchangeproductcategory}  
+                            checked={this.state.eggless === 'egge'}
+                                onChange={this.onchangeproducteggless}  
                             />
                             <label>EGG/LESS</label>
                     </div>
@@ -174,10 +195,56 @@ export default class CreateProduct extends Component{
                             name="egg"
                             id="egg"
                             value="egg"
-                            checked={this.state.category === 'egg'}
+                            checked={this.state.eggless === 'egg'}
+                                onChange={this.onchangeproducteggless}  
+                            />
+                            <label>EGG</label>
+                    </div>
+                   </div>
+                    
+                   </div>
+                  
+                   <div className="form-group">
+                   <label>CATEGORY</label>
+                   <div className="form-group">
+                       <div className="form-check form-check-inline">                        
+
+                            <input 
+                            className="form-check form-check-inline"
+                            type="radio"
+                            name="cake"
+                            id="cake"
+                            value="cake"
+                            checked={this.state.category === 'cake'}
                                 onChange={this.onchangeproductcategory}  
                             />
-                            <label>EGGLESS</label>
+                            <label>CAKE</label>
+                    </div>
+                    <div className="form-check form-check-inline">                        
+
+                            <input 
+                            className="form-check form-check-inline"
+                            type="radio"
+                            name="pastry"
+                            id="pastry"
+                            value="pastry"
+                            checked={this.state.category === 'pastry'}
+                                onChange={this.onchangeproductcategory}  
+                            />
+                            <label>PASTRY</label>
+                    </div>
+                    <div className="form-check form-check-inline">                        
+
+                            <input 
+                            className="form-check form-check-inline"
+                            type="radio"
+                            name="custom"
+                            id="custom"
+                            value="custom"
+                            checked={this.state.category === 'custom'}
+                                onChange={this.onchangeproductcategory}  
+                            />
+                            <label>CUSTOM</label>
                     </div>
                    </div>
                     
