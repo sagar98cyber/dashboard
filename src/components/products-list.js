@@ -7,6 +7,16 @@ const  Product = props =>(
         <td>{props.products.pname}</td>
         <td>{props.products.amount}</td>
         <td>{props.products.weight}</td>
+        <td>{props.products.flavor}</td>
+        <td>{props.products.eggless}</td>
+        <td>{props.products.category}</td>
+        <td>{props.products.prodDetails}</td>
+        <td>{props.products.prdRank}</td>
+        <td>{props.products.profitRatio}</td>
+        <td>{props.products.deliveryCharges}</td>
+        <td>{props.products.tax}</td>
+        <td>{props.products.filename}</td>
+        <td>{props.products.deliverableat}</td>
         <td>
             <Link to = {"/edit/"+props.products._id}>
                 EDIT
@@ -21,11 +31,10 @@ export default class ProductsList extends Component{
     }
    
     componentDidMount(){
-        axios.get('https://localhost:3000/products/all/')
-        .then(response =>{
-            this.setState({products: response.data});
-        })
-        .catch((err)=>{
+        axios.get('http://localhost:3000/products/all')
+        .then(response =>{        
+                this.setState({products: response.data});
+        }).catch((err)=>{
             console.log(err);
         })
     }
@@ -45,6 +54,16 @@ export default class ProductsList extends Component{
                        <th>pname</th>
                        <th>amount</th>
                        <th>weight</th>
+                       <th>flavor</th>
+                       <th>eggless</th>
+                       <th>category</th>
+                       <th>prodDetails</th>
+                       <th>prdRank</th>
+                       <th>profitRatio</th>
+                       <th>deliveryCharges</th>
+                       <th>tax</th>
+                       <th>filename</th>
+                       <th>deliverableat</th>
                        <th>Actions</th>
                    </tr>
                </thead>
