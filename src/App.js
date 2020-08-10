@@ -22,9 +22,9 @@ class App extends Component{
                 <li className="navbar-item">
                     <Link to ="/create" className="nav-link">CreateProduct</Link>
                 </li>
-                <li className="navbar-item">
+             {/*   <li className="navbar-item" >
                     <Link to ="/edit" className="nav-link">EditProduct</Link>
-                </li>
+                   </li>*/}
               </ul>
             </div>
           </nav>   

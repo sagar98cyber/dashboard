@@ -2,6 +2,7 @@ import React,{ Component} from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
+
 const  Product = props =>(
     <tr>
         <td>{props.products.pname}</td>
@@ -18,7 +19,7 @@ const  Product = props =>(
         <td>{props.products.filename}</td>
         <td>{props.products.deliverableat}</td>
         <td>
-            <Link to = {"/edit/"+props.products._id}>
+        <Link to = {"/edit/"/*+props.products._id*/}>
                 EDIT
             </Link>
         </td>

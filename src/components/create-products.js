@@ -97,10 +97,7 @@ export default class CreateProduct extends Component{
     }
     onSubmit(e){
 
-        console.log(
-            `${this.state.pname} ${this.state.amount} ${this.state.eggless}`
-        );
-        
+        e.preventDefault();
         const newProd = {
             pname:this.state.pname,
             amount:this.state.amount,
@@ -115,7 +112,7 @@ export default class CreateProduct extends Component{
              tax:this.state.tax,
              filename:this.state.filename,
              fileloc:this.state.fileloc,
-        }
+        };
         
         Axios.post('http://localhost:3000/products/addproduct',newProd)
         .then(res=>console.log(res.data));
@@ -288,7 +285,7 @@ export default class CreateProduct extends Component{
                    </div>
                    <div className="form-group">
                    
-                    <input type="submit" className="btn btn-primary" value="create Product" onChange={this.onchangeproductfileloc}
+                    <input type="submit" className="btn btn-primary" value="CREATE Product" 
                     />
                    </div>
                 </form>
