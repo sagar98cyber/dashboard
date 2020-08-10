@@ -19,7 +19,7 @@ const  Product = props =>(
         <td>{props.products.filename}</td>
         <td>{props.products.deliverableat}</td>
         <td>
-        <Link to = {"/edit/"/*+props.products._id*/}>
+        <Link to = {"/edit/"+props.products._id}>
                 EDIT
             </Link>
         </td>
@@ -32,6 +32,14 @@ export default class ProductsList extends Component{
     }
    
     componentDidMount(){
+        axios.get('http://localhost:3000/products/all')
+        .then(response =>{        
+                this.setState({products: response.data});
+        }).catch((err)=>{
+            console.log(err);
+        })
+    }
+    componentDidUpdate(){
         axios.get('http://localhost:3000/products/all')
         .then(response =>{        
                 this.setState({products: response.data});

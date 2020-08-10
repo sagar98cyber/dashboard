@@ -1,6 +1,5 @@
 import React,{ Component} from 'react';
 import axios from 'axios';
-
 export default class EditProduct extends Component{
     constructor(props){
         super(props);
@@ -17,10 +16,10 @@ export default class EditProduct extends Component{
         this.onchangeproducttax = this.onchangeproducttax.bind(this);
         this.onchangeproductfilename = this.onchangeproductfilename.bind(this);
         this.onchangeproductfileloc = this.onchangeproductfileloc.bind(this);
-        
-
+        this.onSubmit = this.onSubmit.bind(this);
         this.state={
-            pname:'',
+           
+            pname:this.props.pname,
             amount:'',
             weight:['250 Grams','500 Grams'],
            /* flavor:'',*/
@@ -37,6 +36,7 @@ export default class EditProduct extends Component{
     }
     onchangeproductname(e){
         this.setState({
+          
             pname: e.target.value
         });
     }
@@ -70,7 +70,29 @@ export default class EditProduct extends Component{
         this.setState({
             prdRank: e.target.value
         });
-    } onchangeproductprodDetails(e){
+    }
+    onSubmit(e){
+        e.preventDefault();
+        const newProd = {
+            pname:this.state.pname,
+            amount:this.state.amount,
+             weight:this.state.weight,
+            /* flavor:'',*/
+             eggless:this.state.eggless,
+             category:this.state.category,
+             prodDetails:this.state.prodDetails,
+             prdRank:this.state.prdRank,
+             profitRatio:this.state.profitRatio,
+             deliveryCharges:this.state.deliveryCharges,
+             tax:this.state.tax,
+             filename:this.state.filename,
+             fileloc:this.state.fileloc,
+        };
+        axios.post('http://localhost:3000/products/update'+this.props.match.params.id,newProd)
+        .then(res=> console.log(res.data));
+        this.props.history.push('/');
+    }
+     onchangeproductprodDetails(e){
         this.setState({
             prodDetails: e.target.value
         });
@@ -84,12 +106,12 @@ export default class EditProduct extends Component{
         });
     }
 
-    componentDidMount(){
-        console.log(this.state);
-        axios.post('http://localhost:3000/products/update')
+
+    componentDidMount(){   
+        axios.post('http://localhost:3000/products/update'+this.props.match.params.id)
         .then(
-            response =>{
-                this.setState({
+            response =>{             
+                this.setState({                   
                     pname:response.data.pname,
                     amount:response.data.amount,
                     weight:['250 Grams','500 Grams'],
@@ -110,11 +132,10 @@ export default class EditProduct extends Component{
             console.log(error)
         })
     }
-
     render(){
         return(
             <div>
-                <p>
+               <p>
                    <h3>
                        Update PRODUCT
                    </h3>
@@ -268,6 +289,6 @@ export default class EditProduct extends Component{
                    
                 </p>
             </div>
-        );
+        )
     }
 }
