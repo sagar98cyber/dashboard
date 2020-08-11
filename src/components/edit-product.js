@@ -19,7 +19,7 @@ export default class EditProduct extends Component{
         this.onSubmit = this.onSubmit.bind(this);
         this.state={
            
-            pname:this.props.pname,
+            pname:'',
             amount:'',
             weight:['250 Grams','500 Grams'],
            /* flavor:'',*/
@@ -88,7 +88,7 @@ export default class EditProduct extends Component{
              filename:this.state.filename,
              fileloc:this.state.fileloc,
         };
-        axios.post('http://localhost:3000/products/update'+this.props.match.params.id,newProd)
+        axios.post('http://localhost:3000/products/update/'+this.props.match.params.id,newProd)
         .then(res=> console.log(res.data));
         this.props.history.push('/');
     }
@@ -108,7 +108,7 @@ export default class EditProduct extends Component{
 
 
     componentDidMount(){   
-        axios.post('http://localhost:3000/products/update'+this.props.match.params.id)
+        axios.post('http://localhost:3000/products/update/'+this.props.match.params.id)
         .then(
             response =>{             
                 this.setState({                   
